@@ -13,8 +13,6 @@ print("1" + "2")
 print([1] + [2])
 
 
-
-
 # ===========================================================
 #  2. 다형성 없이 구현한다면?
 # ===========================================================
@@ -25,12 +23,14 @@ class Dog:
     def bark(self):
         print(f"{self.name}: 멍멍")
 
+
 class Cat:
     def __init__(self, name):
         self.name = name
 
     def meow0(self):
         print(f"{self.name}: 야옹")
+
 
 def make_sound(animal):
     if isinstance(animal, Dog):
@@ -43,6 +43,7 @@ def make_sound(animal):
 #  3. 다형성 구현 (상속 + 오버라이딩)
 # ===========================================================
 
+
 class Animal:
     def __init__(self, name):
         self.name = name
@@ -50,22 +51,27 @@ class Animal:
     def speak(self):
         print(f"{self.name}: ...")
 
+
 class Dog(Animal):
     def speak(self):
         print(f"{self.name}: 멍멍")
 
+
 class Cat(Animal):
     def speak(self):
         print(f"{self.name}: 야옹")
-    
+
+
 class Cow(Animal):
     def speak(self):
         print(f"{self.name}: 음메")
+
 
 # 새로운 클래스를 추가해도 make_sound2()는 그대로 사용 가능
 # 확장에는 열려있고, 수정에는 닫혀있다.
 def make_sound2(animal):
     animal.speak()
+
 
 make_sound2(Dog("멍멍이"))
 make_sound2(Cat("야옹이"))
@@ -78,19 +84,21 @@ for a in animals:
     a.speak()
 
 
-
 # (참고) 덕 타이핑(Duck typing)
 # - 파이썬은 함수 호출 시 객체의 타입을 검사하지 않음 (실행 시 메소드만 확인)
 # - 따라서, 같은 이름의 메소드만 있으면 다형성을 구현할 수 있음
 # - 파이썬에서는 상속이 다형성의 필수 조건은 아니지만 메소드가 없으면 에러가 나므로 주의!
 
+
 class Duck:
     def speak(self):
         print("꽥꽥")
 
+
 class Robot:
     def speak(self):
         print("삐리삑")
+
 
 for x in [Duck(), Robot()]:
     x.speak()
@@ -99,6 +107,7 @@ for x in [Duck(), Robot()]:
 # =========================================================
 #  🔥 실습 문제 : 도형 넓이 계산
 # =========================================================
+
 
 # Shape 부모 클래스 작성하기
 class Shape:
@@ -128,6 +137,7 @@ class Circle(Animal):
 
     def area(self):
         return self.r * self.r * 3.14
+
 
 # Triangle 자식 클래스 작성하기
 class Triangle(Animal):
@@ -163,8 +173,8 @@ for x in shapes:
     print(f"{x.name} 넓이: {x.area()}")
     total += x.area()
 
-                                        # 사각형 넓이: 12cm
-                                        # 원 넓이: 78.5cm
-                                        # 삼각형 넓이: 9.0cm
+    # 사각형 넓이: 12cm
+    # 원 넓이: 78.5cm
+    # 삼각형 넓이: 9.0cm
 
-print("전체 넓이:", total)            # 전체 넓이: 99.5cm
+print("전체 넓이:", total)  # 전체 넓이: 99.5cm
